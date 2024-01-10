@@ -1,7 +1,11 @@
+// Array to store tasks
 let tasks = [];
 
+//update the display of the work Pomodoro timer
 function updateTime() {
+  // Fetch Pomodoro timer details from local storage
   chrome.storage.local.get(["timer", "timeOption", "isRunning"], (res) => {
+    // Update the displayed time dynamically
     const time = document.getElementById("time");
     const minutes = `${res.timeOption - Math.ceil(res.timer / 60)}`.padStart(
       1,
@@ -12,6 +16,7 @@ function updateTime() {
       seconds = `${60 - (res.timer % 60)}`.padStart(1, "0");
     }
     time.textContent = `${minutes}:${seconds}`;
+    // set the badge text if the timer is running
     if (res.isRunning) {
       chrome.action.setBadgeText({
         text: `${minutes}:${seconds}`,
@@ -20,9 +25,11 @@ function updateTime() {
   });
 }
 
+// Initial update and setting up periodic updates for the work Pomodoro timer
 updateTime();
 setInterval(updateTime, 1000);
 
+// Event listener for the "Start/Pause Timer" button for the work Pomodoro timer
 const startTimerBtn = document.getElementById("start-timer-btn");
 startTimerBtn.addEventListener("click", () => {
   chrome.storage.local.get(["isRunning", "isRunning2"], (res) => {
@@ -56,6 +63,7 @@ startTimerBtn.addEventListener("click", () => {
   });
 });
 
+// Event listener for the "Reset Timer" button for the work Pomodoro timer
 const resetTimerBtn = document.getElementById("reset-timer-btn");
 resetTimerBtn.addEventListener("click", () => {
   chrome.storage.local.set(
@@ -78,6 +86,7 @@ resetTimerBtn.addEventListener("click", () => {
   });
 });
 
+// Function to update the display of the rest Pomodoro timer
 function updateTime2() {
   chrome.storage.local.get(["timer2", "timeOption2", "isRunning2"], (res) => {
     const time = document.getElementById("time2");
@@ -98,9 +107,11 @@ function updateTime2() {
   });
 }
 
+// Initial update and setting up periodic updates for the rest Pomodoro timer
 updateTime2();
 setInterval(updateTime2, 1000);
 
+// Event listener for the "Start/Pause Timer" button for the rest Pomodoro timer
 const startTimerBtn2 = document.getElementById("start-timer-btn2");
 startTimerBtn2.addEventListener("click", () => {
   chrome.storage.local.get(["isRunning", "isRunning2"], (res) => {
@@ -134,6 +145,7 @@ startTimerBtn2.addEventListener("click", () => {
   });
 });
 
+// Event listener for the "Reset Timer" button for the rest Pomodoro timer
 const resetTimerBtn2 = document.getElementById("reset-timer-btn2");
 resetTimerBtn2.addEventListener("click", () => {
   chrome.storage.local.set(
@@ -156,33 +168,38 @@ resetTimerBtn2.addEventListener("click", () => {
   });
 });
 
+// Event listener for the "Add Task" button
 const addTaskBtn = document.getElementById("add-task-btn");
 addTaskBtn.addEventListener("click", () => addTask());
 
+// Fetch tasks from storage and render them
 chrome.storage.sync.get(["tasks"], (res) => {
   tasks = res.tasks ? res.tasks : [];
   renderTasks();
 });
 
+// Function to save tasks to storage
 function saveTasks() {
   chrome.storage.sync.set({
     tasks,
   });
 }
 
+// Function to render a single task input fiel
 function renderTask(taskNum) {
+  // Create input field for task text
   const taskRow = document.createElement("div");
-
   const text = document.createElement("input");
   text.type = "text";
   text.placeholder = "Enter a task...";
   text.value = tasks[taskNum];
   text.className = "task-input";
+  // Append the created elements to the task container
   text.addEventListener("change", () => {
     tasks[taskNum] = text.value;
     saveTasks();
   });
-
+  // Create a delete button
   const deleteBtn = document.createElement("input");
   deleteBtn.type = "button";
   deleteBtn.value = "X";
@@ -198,6 +215,7 @@ function renderTask(taskNum) {
   taskContainer.appendChild(taskRow);
 }
 
+// Add a new task
 function addTask() {
   const taskNum = tasks.length;
   tasks.push("");
@@ -205,12 +223,14 @@ function addTask() {
   saveTasks();
 }
 
+//Delete a task
 function deleteTask(taskNum) {
   tasks.splice(taskNum, 1);
   renderTasks();
   saveTasks();
 }
 
+//Render all tasks
 function renderTasks() {
   const taskContainer = document.getElementById("task-container");
   taskContainer.textContent = "";

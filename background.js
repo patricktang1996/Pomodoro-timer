@@ -1,9 +1,12 @@
+//Sets up the initial alarm for the Pomodoro timer.
 chrome.alarms.create("pomodoroTimer", {
   periodInMinutes: 1 / 60,
 });
 
+//Handle First Pomodoro Timer Alarm Events
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === "pomodoroTimer") {
+    //Check if the first Pomodoro timer is running and updates its state based on elapsed time
     chrome.storage.local.get(["timer", "isRunning", "timeOption"], (res) => {
       if (res.isRunning) {
         let timer = res.timer + 1;
@@ -25,6 +28,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   }
 });
 
+//Initial Pomodoro Timer Settings
 chrome.storage.local.get(["timer", "isRunning", "timeOption"], (res) => {
   chrome.storage.local.set({
     timer: "timer" in res ? res.timer : 0,
@@ -33,12 +37,15 @@ chrome.storage.local.get(["timer", "isRunning", "timeOption"], (res) => {
   });
 });
 
+//Set up Second Pomodoro Timer Alarms
 chrome.alarms.create("pomodoroTimer2", {
   periodInMinutes: 1 / 60,
 });
 
+//Handle Second Pomodoro Timer Alarm Events
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === "pomodoroTimer2") {
+    //Check if the second Pomodoro timer is running and updates its state based on elapsed time
     chrome.storage.local.get(["timer2", "isRunning2", "timeOption2"], (res) => {
       if (res.isRunning2) {
         let timer2 = res.timer2 + 1;
@@ -60,6 +67,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   }
 });
 
+//Initial Settings for Second Pomodoro Timer
 chrome.storage.local.get(["timer2", "isRunning2", "timeOption2"], (res) => {
   chrome.storage.local.set({
     timer2: "timer2" in res ? res.timer2 : 0,
