@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="options.css" />
+    <title>Pomodoro Timer Extension Options</title>
+  </head>
+  <body>
+    <h1>Pomodoro Timer Options</h1>
+    <div class="box-container">
+      <div class="box">
+        <label>
+          <h2>Work:</h2>
+          <h3>Default Time in Minutes (1 - 60):</h3>
+          <input id="time-option" type="number" min="1" max="60" value="25" />
+        </label>
+        <button id="save-btn">Save Options</button>
+      </div>
+      <div class="box">
+        <label>
+          <h2>Rest:</h2>
+          <h3>Default Time in Minutes (1 - 60):</h3>
+          <input id="time-option2" type="number" min="1" max="60" value="5" />
+        </label>
+        <button id="save-btn2">Save Options</button>
+      </div>
+    </div>
+  </body>
+  <script src="options.js"></script>
+</html>
