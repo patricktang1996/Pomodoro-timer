@@ -26,13 +26,17 @@ chrome.alarms.onAlarm.addListener((alarm) => {
           });
           timer = 0;
           isRunning = false;
+          chrome.action.setBadgeText({
+            text: "00:00",
+          });
+        } else {
+          chrome.action.setBadgeText({
+            text: `${minutes}:${seconds}`,
+          });
         }
         chrome.storage.local.set({
           timer,
           isRunning,
-        });
-        chrome.action.setBadgeText({
-          text: `${minutes}:${seconds}`,
         });
       }
     });
@@ -75,13 +79,17 @@ chrome.alarms.onAlarm.addListener((alarm) => {
           });
           timer2 = 0;
           isRunning2 = false;
+          chrome.action.setBadgeText({
+            text: "00:00",
+          });
+        } else {
+          chrome.action.setBadgeText({
+            text: `${minutes}:${seconds}`,
+          });
         }
         chrome.storage.local.set({
           timer2,
           isRunning2,
-        });
-        chrome.action.setBadgeText({
-          text: `${minutes}:${seconds}`,
         });
       }
     });
