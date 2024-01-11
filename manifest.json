@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Pomodoro Timer",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "Helps you focus and get things done!",
   "icons": {
     "16": "icon.png",
