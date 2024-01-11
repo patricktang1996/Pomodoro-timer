@@ -77,3 +77,15 @@ h3 {
   border-radius: 8px;
   padding: 20px;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: #ffffff;
+  font-size: 14px;
+  margin: 20px 0;
+}
