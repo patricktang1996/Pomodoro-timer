@@ -16,6 +16,7 @@ function updateTime() {
       seconds = `${60 - (res.timer % 60)}`.padStart(1, "0");
     }
     time.textContent = `${minutes}:${seconds}`;
+    startTimerBtn.textContent = res.isRunning ? "Pause Timer" : "Start Timer";
   });
 }
 
@@ -93,6 +94,7 @@ function updateTime2() {
       seconds = `${60 - (res.timer2 % 60)}`.padStart(1, "0");
     }
     time.textContent = `${minutes}:${seconds}`;
+    startTimerBtn2.textContent = res.isRunning2 ? "Pause Timer" : "Start Timer";
   });
 }
 
