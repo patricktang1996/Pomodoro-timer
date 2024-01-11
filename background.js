@@ -8,6 +8,14 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === "pomodoroTimer") {
     //Check if the first Pomodoro timer is running and updates its state based on elapsed time
     chrome.storage.local.get(["timer", "isRunning", "timeOption"], (res) => {
+      const minutes = `${res.timeOption - Math.ceil(res.timer / 60)}`.padStart(
+        1,
+        "0"
+      );
+      let seconds = "00";
+      if (res.timer % 60 != 0) {
+        seconds = `${60 - (res.timer % 60)}`.padStart(1, "0");
+      }
       if (res.isRunning) {
         let timer = res.timer + 1;
         let isRunning = true;
@@ -22,6 +30,9 @@ chrome.alarms.onAlarm.addListener((alarm) => {
         chrome.storage.local.set({
           timer,
           isRunning,
+        });
+        chrome.action.setBadgeText({
+          text: `${minutes}:${seconds}`,
         });
       }
     });
@@ -47,6 +58,13 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === "pomodoroTimer2") {
     //Check if the second Pomodoro timer is running and updates its state based on elapsed time
     chrome.storage.local.get(["timer2", "isRunning2", "timeOption2"], (res) => {
+      const minutes = `${
+        res.timeOption2 - Math.ceil(res.timer2 / 60)
+      }`.padStart(1, "0");
+      let seconds = "00";
+      if (res.timer2 % 60 != 0) {
+        seconds = `${60 - (res.timer2 % 60)}`.padStart(1, "0");
+      }
       if (res.isRunning2) {
         let timer2 = res.timer2 + 1;
         let isRunning2 = true;
@@ -61,6 +79,9 @@ chrome.alarms.onAlarm.addListener((alarm) => {
         chrome.storage.local.set({
           timer2,
           isRunning2,
+        });
+        chrome.action.setBadgeText({
+          text: `${minutes}:${seconds}`,
         });
       }
     });

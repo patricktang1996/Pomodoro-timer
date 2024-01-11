@@ -16,12 +16,6 @@ function updateTime() {
       seconds = `${60 - (res.timer % 60)}`.padStart(1, "0");
     }
     time.textContent = `${minutes}:${seconds}`;
-    // set the badge text if the timer is running
-    if (res.isRunning) {
-      chrome.action.setBadgeText({
-        text: `${minutes}:${seconds}`,
-      });
-    }
   });
 }
 
@@ -99,11 +93,6 @@ function updateTime2() {
       seconds = `${60 - (res.timer2 % 60)}`.padStart(1, "0");
     }
     time.textContent = `${minutes}:${seconds}`;
-    if (res.isRunning2) {
-      chrome.action.setBadgeText({
-        text: `${minutes}:${seconds}`,
-      });
-    }
   });
 }
 
