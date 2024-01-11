@@ -88,3 +88,8 @@ body {
   cursor: pointer;
   font-weight: 700;
 }
+
+a {
+  color: #ffffff;
+  font-size: 14px;
+}
