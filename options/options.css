@@ -5,13 +5,13 @@ body {
 h1 {
   color: whitesmoke;
   text-align: center;
-  font-size: 50px;
+  font-size: 40px;
   margin: 20px;
   font-weight: normal;
 }
 
 h2 {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: normal;
   color: whitesmoke;
   margin-top: -10px;
@@ -19,7 +19,7 @@ h2 {
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: normal;
   color: whitesmoke;
 }
@@ -27,7 +27,7 @@ h3 {
 #time-option {
   outline: none;
   border: none;
-  width: 300px;
+  width: 200px;
   border-radius: 4px;
   padding: 10px;
 }
@@ -35,7 +35,7 @@ h3 {
 #time-option2 {
   outline: none;
   border: none;
-  width: 300px;
+  width: 200px;
   border-radius: 4px;
   padding: 10px;
 }
